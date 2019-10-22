@@ -1,8 +1,8 @@
 <template>
   <div class="card mb-3">
-    <form class="user-form">
+    <form class="user-form" @submit.prevent="submit">
       <div class="card-header">
-        <i class="far fa-edit" />New user
+        <i class="far fa-edit text-muted" />New user
       </div>
       <div class="card-body">
         <div class="position-relative form-group">
@@ -48,6 +48,9 @@ export default {
     }
   },
   methods: {
+    submit () {
+      // todo
+    },
     cancel () {
       // todo cancel xhr
       this.$router.back()
