@@ -27,23 +27,10 @@
 
 <script>
 import UserCard from '../../../components/user-card'
+import UserIdPage from '../../../components/user-id-page'
 
 export default {
   components: { UserCard },
-  async asyncData ({ store, app, params }) {
-    const userId = parseInt(params.id)
-
-    // try get user from vuex
-    let user = store.getters['users/userById'](userId)
-
-    // or from server
-    if (!user) {
-      user = await app.$api.get('users/' + userId)
-    }
-
-    return {
-      user
-    }
-  }
+  extends: UserIdPage
 }
 </script>
