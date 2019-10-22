@@ -23,6 +23,7 @@ export default {
   ** Global CSS
   */
   css: [
+    { src: '@fortawesome/fontawesome-free/css/all.min.css' },
     { src: '@/assets/scss/app.scss' }
   ],
   /*
