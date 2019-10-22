@@ -30,17 +30,6 @@ import UserCard from '../../../components/user-card'
 
 export default {
   components: { UserCard },
-  data () {
-    return {
-      user: {
-        id: 1,
-        first_name: null,
-        last_name: null,
-        email: null,
-        role_id: null
-      }
-    }
-  },
   async asyncData ({ store, app, params }) {
     const userId = parseInt(params.id)
 
