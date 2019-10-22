@@ -34,7 +34,8 @@ export default {
   */
   plugins: [
     '~/plugins/api',
-    { src: '~/plugins/vue-toasted', ssr: false }
+    { src: '~/plugins/vue-toasted', ssr: false },
+    '~/plugins/vue-filters'
   ],
   /*
   ** Nuxt.js dev-modules
