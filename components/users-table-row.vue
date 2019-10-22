@@ -20,7 +20,8 @@
       </nuxt-link>
     </td>
     <td>
-      {{ user.email }}
+      <!--eslint-disable-next-line vue/no-v-html-->
+      <span v-html="$options.filters.highlight(user.email, searchEmail)" />
     </td>
     <td>
       <!--todo role-->
@@ -44,6 +45,9 @@ export default {
     }
   },
   computed: {
+    searchEmail () {
+      return (this.$store.state.users.params.email || '').trim()
+    },
     userRoute () {
       return {
         name: 'users-id',
