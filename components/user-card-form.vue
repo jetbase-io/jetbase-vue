@@ -201,7 +201,17 @@ export default {
           this.$emit('created', res)
         }
       } catch (e) {
-        throw e
+        let errorHandled = false
+
+        // handle server validation errors
+        if (e.response && [400].includes(e.response.status)) {
+          const message = e.response.data.message || e.response.statusText || 'Server Error'
+          alert(message)
+          errorHandled = true
+        }
+        if (!errorHandled) {
+          throw e
+        }
       } finally {
         this.submitting = false
       }
