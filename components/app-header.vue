@@ -95,6 +95,8 @@ export default {
     position: fixed;
     z-index: 1020;
     width: 100%;
+    top: 0;
+    left: 0;
   }
 }
 
