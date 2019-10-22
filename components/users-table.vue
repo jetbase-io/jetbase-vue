@@ -7,19 +7,19 @@
             id
           </th>
           <th scope="col">
-            username
+            Username
           </th>
           <th scope="col">
-            first name
+            First name
           </th>
           <th scope="col">
-            last name
+            Last name
           </th>
           <th scope="col">
-            email
+            E-mail
           </th>
           <th scope="col">
-            role
+            Role
           </th>
         </tr>
       </thead>
