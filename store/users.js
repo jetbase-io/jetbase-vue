@@ -1,6 +1,11 @@
+import _set from 'lodash/set'
+
 export const state = () => ({
   users: [],
-  count: 0
+  count: 0,
+  params: {
+    email: '' // search term
+  }
 })
 
 export const getters = {
@@ -27,5 +32,8 @@ export const mutations = {
       state.users.splice(index, 1)
       state.count--
     }
+  },
+  setParam (state, { param, value }) {
+    _set(state, 'params.' + param, value)
   }
 }
