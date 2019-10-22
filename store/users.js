@@ -3,6 +3,12 @@ export const state = () => ({
   count: 0
 })
 
+export const getters = {
+  userById: state => (id) => {
+    return state.users.find(u => u.id === id)
+  }
+}
+
 export const actions = {
   async loadUsers ({ commit }) {
     const { items: users, count } = await this.$api.get('users')
