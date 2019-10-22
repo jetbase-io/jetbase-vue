@@ -5,7 +5,7 @@ export const state = () => ({
   count: 0,
   loading: false,
   params: {
-    limit: 10,
+    limit: 1,
     offset: 0,
     email: '' // search term
   }
@@ -48,6 +48,9 @@ export const mutations = {
   },
   setParam (state, { param, value }) {
     _set(state, 'params.' + param, value)
+  },
+  setParams (state, params) {
+    state.params = params
   },
   setLoading (state, flag) {
     state.loading = flag
