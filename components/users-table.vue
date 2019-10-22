@@ -21,10 +21,13 @@
           <th scope="col">
             Role
           </th>
+          <th scope="col">
+            Action
+          </th>
         </tr>
       </thead>
       <tbody>
-        <users-table-row v-for="user in users" :key="user.id" :user="user" />
+        <users-table-row v-for="user in users" :key="user.id" :user="user" @deleted="$emit('deleted', $event) " />
       </tbody>
     </table>
   </div>

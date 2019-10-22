@@ -25,7 +25,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <users-table :users="users" />
+                <users-table :users="users" @deleted="deleteUser" />
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import UsersTable from '../../components/users-table'
 
 export default {
@@ -49,6 +49,9 @@ export default {
   },
   async fetch ({ store }) {
     await store.dispatch('users/loadUsers')
+  },
+  methods: {
+    ...mapMutations('users', ['deleteUser'])
   }
 }
 </script>

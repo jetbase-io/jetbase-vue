@@ -26,11 +26,17 @@
       <!--todo role-->
       <code>TODO role</code>
     </td>
+    <td>
+      <user-actions :user="user" @deleted="$emit('deleted', user.id)" />
+    </td>
   </tr>
 </template>
 
 <script>
+import UserActions from './user-actions'
+
 export default {
+  components: { UserActions },
   props: {
     user: {
       type: Object,
