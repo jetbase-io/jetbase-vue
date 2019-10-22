@@ -45,7 +45,7 @@
         </button>
       </div>
       <div class="text-right col-6">
-        <button class="px-0 btn btn-link">
+        <button class="px-0 btn btn-link" type="button">
           Forgot password?
         </button>
       </div>
