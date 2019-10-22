@@ -5,24 +5,46 @@
         <i class="far fa-edit text-muted" />New User
       </div>
       <div class="card-body">
+        <!--username-->
         <div class="position-relative form-group">
           <label>Username</label>
           <!--todo username-->
           <code class="d-block">TODO username</code>
           <!--<input id="username" v-model.trim="form.username" placeholder="Enter username" type="text" class="form-control">-->
         </div>
+
+        <!--first name-->
         <div class="position-relative form-group">
           <label for="first_name">First name</label>
-          <input id="first_name" v-model.trim="form.first_name" placeholder="Enter first name" type="text" class="form-control">
+          <input
+            id="first_name"
+            v-model.trim="form.first_name"
+            placeholder="Enter first name"
+            type="text"
+            class="form-control"
+            :class="{'is-invalid': true}"
+          >
+          <div class="invalid-feedback">
+            First name Error
+          </div>
         </div>
+
+        <!--last name-->
         <div class="position-relative form-group">
           <label for="last_name">Last name</label>
           <input id="last_name" v-model.trim="form.last_name" placeholder="Enter last name" type="text" class="form-control">
         </div>
+
+        <!--email-->
         <div class="position-relative form-group">
           <label for="email">E-mail</label>
           <input id="email" v-model.trim="form.email" placeholder="Enter e-mail" type="email" class="form-control">
         </div>
+
+        <!--todo password-->
+        <!--todo password confirmation-->
+
+        <!--role-->
         <div class="position-relative form-group">
           <label>Role</label>
           <!--todo role-->
