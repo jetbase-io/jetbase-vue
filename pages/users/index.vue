@@ -27,6 +27,7 @@
               </div>
               <div class="card-body">
                 <users-table :users="users" @deleted="deleteUser" />
+                <pagination :count="count" :value="page" @input="paginate" />
               </div>
             </div>
           </div>
@@ -40,20 +41,27 @@
 import { mapState, mapMutations } from 'vuex'
 import UsersSearchForm from '../../components/users-search-form'
 import UsersTable from '../../components/users-table'
+import Pagination from '../../components/pagination'
 
 export default {
-  components: { UsersSearchForm, UsersTable },
+  components: { UsersSearchForm, UsersTable, Pagination },
   data () {
     return {}
   },
   computed: {
-    ...mapState('users', ['users'])
+    ...mapState('users', ['users', 'count']),
+    page () {
+      return 1
+    }
   },
   async fetch ({ store }) {
     await store.dispatch('users/loadUsers')
   },
   methods: {
-    ...mapMutations('users', ['deleteUser'])
+    ...mapMutations('users', ['deleteUser']),
+    paginate () {
+      console.log('paginate') // todo paginate
+    }
   }
 }
 </script>
