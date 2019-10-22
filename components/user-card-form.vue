@@ -3,7 +3,7 @@
   <div class="card mb-3">
     <form class="user-form" @submit.prevent="submit">
       <div class="card-header">
-        <i class="far fa-edit text-muted" />New User
+        <i class="far fa-edit text-muted" />{{ cardTitle }}
       </div>
       <div class="card-body">
         <!--username-->
@@ -122,6 +122,7 @@
 </template>
 
 <script>
+import _cloneDeep from 'lodash/cloneDeep'
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 import { CancelToken } from 'axios'
@@ -133,7 +134,7 @@ export default {
   props: {
     inputIdPrefix: {
       type: String,
-      default: ''
+      default: 'user-form-'
     },
     passwordMinLength: {
       type: Number,
@@ -179,6 +180,19 @@ export default {
   computed: {
     isUpdate () {
       return !!this.updateUser
+    },
+    cardTitle () {
+      return this.isUpdate ? `Edit User: ${this.updateUser.id}` : 'New User'
+    }
+  },
+  created () {
+    if (this.isUpdate) {
+      // clone update user object into form
+      this.form = _cloneDeep(this.updateUser)
+      // optional: delete unused fields, anyway server ignore they on update request
+      delete this.form.id
+      delete this.form.password
+      delete this.form.password_confirmation
     }
   },
   methods: {
