@@ -19,7 +19,7 @@
             email
           </th>
           <th scope="col">
-            status
+            role
           </th>
         </tr>
       </thead>

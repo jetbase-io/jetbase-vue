@@ -25,7 +25,7 @@
     </td>
     <td>
       <!--todo role-->
-      <span class="badge badge-success">role</span>
+      <span class="text-danger">TODO role</span>
     </td>
   </tr>
 </template>
