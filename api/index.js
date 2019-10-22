@@ -3,20 +3,21 @@ export default class Api {
     this.$axios = $axios
   }
 
-  call (method, endpoint, data = {}, params = {}) {
+  call (method, endpoint, data = {}, params = {}, cancelToken = null) {
     return this.$axios.$request({
       method,
       url: endpoint,
       data,
-      params
+      params,
+      cancelToken
     })
   }
 
-  post (endpoint, data = {}) {
-    return this.call('POST', endpoint, data)
+  post (endpoint, data = {}, params = {}, cancelToken = null) {
+    return this.call('POST', endpoint, data, params, cancelToken)
   }
 
-  get (endpoint, params = {}) {
-    return this.call('GET', endpoint, {}, params)
+  get (endpoint, params = {}, cancelToken = null) {
+    return this.call('GET', endpoint, {}, params, cancelToken)
   }
 }
