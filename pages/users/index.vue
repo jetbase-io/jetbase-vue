@@ -14,10 +14,11 @@
     <div class="container-fluid">
       <transition name="fade" appear>
         <div class="row">
-          <div class="col-xl-12">
-            <div class="card mb-3">
+          <div class="col-12">
+            <div class="card users-card mb-3">
               <div class="card-header">
                 <i class="fas fa-list-ul" /> Users
+                <users-search-form class="ml-4 mr-auto" />
                 <div class="card-header-actions">
                   <nuxt-link :to="{name:'users-new'}" class="card-header-action btn-setting btn btn-link">
                     <i class="fas fa-plus" />
@@ -37,10 +38,11 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import UsersSearchForm from '../../components/users-search-form'
 import UsersTable from '../../components/users-table'
 
 export default {
-  components: { UsersTable },
+  components: { UsersSearchForm, UsersTable },
   data () {
     return {}
   },
@@ -55,3 +57,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.users-card {
+  .card-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .search-form {
+    width: 320px;
+    max-width: 100%;
+  }
+}
+</style>
