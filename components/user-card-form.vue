@@ -25,9 +25,7 @@
             :class="{'is-invalid': $v.form.first_name.$error}"
           >
           <div v-if="$v.form.first_name.$error" class="invalid-feedback">
-            <template v-if="!$v.form.first_name.required">
-              Please enter first name
-            </template>
+            <template v-if="!$v.form.first_name.required">Please enter first name</template>
           </div>
         </div>
 
@@ -42,9 +40,7 @@
             :class="{'is-invalid': $v.form.last_name.$error}"
           >
           <div v-if="$v.form.last_name.$error" class="invalid-feedback">
-            <template v-if="!$v.form.last_name.required">
-              Please enter last name
-            </template>
+            <template v-if="!$v.form.last_name.required">Please enter last name</template>
           </div>
         </div>
 
@@ -55,12 +51,31 @@
             :id="inputPrefix('email')"
             v-model.trim="form.email"
             placeholder="Enter e-mail"
-            type="email"
             class="form-control"
+            :class="{'is-invalid': $v.form.email.$error}"
           >
+          <div v-if="$v.form.email.$error" class="invalid-feedback">
+            <template v-if="!$v.form.email.required">Please enter E-mail</template>
+            <template v-if="!$v.form.email.email">Invalid E-mail format</template>
+          </div>
         </div>
 
-        <!--todo password-->
+        <!--password-->
+        <div class="form-group">
+          <label :for="inputPrefix('password')">Password</label>
+          <input
+            :id="inputPrefix('password')"
+            v-model.trim="form.password"
+            type="password"
+            :placeholder="`Enter password, min ${passwordMinLength} symbols`"
+            class="form-control"
+            :class="{'is-invalid': $v.form.password.$error}"
+          >
+          <div v-if="$v.form.password.$error" class="invalid-feedback">
+            <template v-if="!$v.form.password.required">Please enter password</template>
+            <template v-if="!$v.form.password.minLength">Password minimum length {{ passwordMinLength }} symbols</template>
+          </div>
+        </div>
         <!--todo password confirmation-->
 
         <!--role-->
@@ -84,7 +99,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
@@ -92,6 +107,10 @@ export default {
     inputIdPrefix: {
       type: String,
       default: ''
+    },
+    passwordMinLength: {
+      type: Number,
+      default: 8
     }
   },
   data () {
@@ -101,16 +120,21 @@ export default {
         first_name: null,
         last_name: null,
         email: null,
-        role_id: null
+        role_id: null,
+        password: null,
+        password_confirmation: null
       },
       submitting: false
     }
   },
-  validations: {
-    form: {
-      first_name: { required },
-      last_name: { required },
-      email: { required, email }
+  validations () {
+    return {
+      form: {
+        first_name: { required },
+        last_name: { required },
+        email: { required, email },
+        password: { required, minLength: minLength(this.passwordMinLength) }
+      }
     }
   },
   methods: {
