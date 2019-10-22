@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import UsersTable from '../components/users-table'
+import UsersTable from '../../components/users-table'
 
 export default {
   components: { UsersTable },
