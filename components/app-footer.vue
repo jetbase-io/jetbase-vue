@@ -1,6 +1,6 @@
 <template>
   <footer class="app-footer">
-    <span><a href="https://jetbase.io" target="_blank">JetBase</a> © 2019.</span>
+    <span><a href="https://jetbase.io" target="_blank">JetBase</a> © 2019</span>
     <span class="ml-auto">
       Powered by <a href="https://jetbase.io" target="_blank">JetBase for Vue</a>
     </span>
