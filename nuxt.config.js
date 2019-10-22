@@ -44,14 +44,23 @@ export default {
   */
   modules: [
     '@nuxtjs/axios', // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/auth' // Doc: https://auth.nuxtjs.org/
+    '@nuxtjs/auth', // Doc: https://auth.nuxtjs.org/
+    '@nuxtjs/proxy' // Doc: https://www.npmjs.com/package/@nuxtjs/proxy
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: process.env.AXIOS_BASE_URL
+    baseURL: '/api'
+  },
+  proxy: {
+    '/api': {
+      target: process.env.API_BASE_URL,
+      pathRewrite: {
+        '^/api': '/'
+      }
+    }
   },
   /*
   ** Axios auth module configuration
