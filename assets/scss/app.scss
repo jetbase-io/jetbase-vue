@@ -70,3 +70,22 @@ html {
 .breadcrumb {
   border-bottom: 1px solid #c8ced3;
 }
+
+.card-header > i {
+  margin-right: 0.5rem;
+}
+
+.card-header-actions {
+  display: inline-block;
+  float: right;
+  margin-right: -0.25rem;
+}
+
+.card-header-action {
+  padding: 0 0.25rem;
+  color: #73818f;
+  &:hover {
+    color: #23282c;
+    text-decoration: none;
+  }
+}
