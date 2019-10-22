@@ -1,3 +1,4 @@
+require('dotenv').config()
 
 export default {
   mode: 'universal',
@@ -42,14 +43,36 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios', // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/auth' // Doc: https://auth.nuxtjs.org/
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: process.env.AXIOS_BASE_URL
+  },
+  /*
+  ** Axios auth module configuration
+  ** See https://auth.nuxtjs.org/api/options.html
+  */
+  auth: {
+    redirect: {
+      home: '/',
+      logout: '/login'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'POST', propertyName: 'token' },
+          logout: { url: '/logout', method: 'DELETE' },
+          user: { url: '/users/current', method: 'GET' }
+        }
+      }
+    },
+    plugins: [
+    ]
   },
   /*
   ** Build configuration
