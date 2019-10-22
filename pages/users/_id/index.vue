@@ -52,9 +52,6 @@ export default {
 
     // try get user from vuex
     let user = store.getters['users/userById'](userId)
-    if (user) {
-      console.log('got user from vuex')
-    }
 
     // or from server
     if (!user) {
