@@ -17,7 +17,7 @@
       <transition name="fade" appear>
         <div class="row">
           <div class="col-lg-6">
-            <user-card :user="user" />
+            <user-card :user="user" @deleted="$router.back()" />
           </div>
         </div>
       </transition>
