@@ -1,6 +1,6 @@
 # jetbase-vue
 
-> Vue/Nuxt client for Jetbase application
+> Vue/Nuxt client for JetBase application
 
 ## Build Setup
 
