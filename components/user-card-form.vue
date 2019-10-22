@@ -82,7 +82,7 @@
           <label :for="inputPrefix('password_confirmation')">Confirm Password</label>
           <input
             :id="inputPrefix('password_confirmation')"
-            v-model.trim="form.password_con"
+            v-model.trim="form.password_confirmation"
             type="password"
             :placeholder="`Repeat password again`"
             class="form-control"
@@ -90,7 +90,7 @@
           >
           <div v-if="$v.form.password_confirmation.$error" class="invalid-feedback">
             <template v-if="!$v.form.password_confirmation.required">Please repeat password</template>
-            <template v-if="!$v.form.password_confirmation.sameAs">Passwords are different</template>
+            <template v-if="!$v.form.password_confirmation.sameAsPassword">Passwords are different</template>
           </div>
         </div>
 
@@ -153,7 +153,7 @@ export default {
     // only for create new user
     if (!this.isUpdate) {
       formValidations.password = { required, minLength: minLength(this.passwordMinLength) }
-      formValidations.password_confirmation = { required, sameAs: sameAs('password') }
+      formValidations.password_confirmation = { required, sameAsPassword: sameAs('password') }
     }
     return {
       form: formValidations
