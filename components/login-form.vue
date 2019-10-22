@@ -58,9 +58,6 @@ import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 
 export default {
-  head: {
-    title: 'Login'
-  },
   mixins: [validationMixin],
   data () {
     return {
