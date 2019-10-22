@@ -55,6 +55,11 @@ export default {
     ...mapActions('users', ['loadUsers']),
     search () {
       this.offset = 0
+
+      // update browser url
+      this.$router.replace({ name: this.$route.name, query: { email: this.email } })
+
+      // run xhr
       return this.loadUsers()
     }
   }
