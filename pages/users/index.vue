@@ -65,9 +65,5 @@ export default {
     align-items: center;
     flex-wrap: nowrap;
   }
-  .search-form {
-    width: 320px;
-    max-width: 100%;
-  }
 }
 </style>

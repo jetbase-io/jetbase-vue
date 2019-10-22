@@ -1,6 +1,6 @@
 <template>
-  <form class="search-form users-search-form" @submit.prevent="search">
-    <div class="input-group input-group-sm flex-nowrap m-0">
+  <form class="search-form users-search-form d-flex flex-nowrap align-items-center" @submit.prevent="search">
+    <div class="input-group input-group-search input-group-sm flex-nowrap m-0 mr-2">
       <label for="search-email" class="sr-only">Search users by E-mail</label>
 
       <input
@@ -18,14 +18,21 @@
         <button id="search-email-addon" class="btn btn-outline-secondary" type="submit">Search</button>
       </div>
     </div>
+    <div class="results">
+      <transition name="fade300" mode="out-in">
+        <span v-if="loading" key="loading" class="ld ld-ring ld-spin text-info" />
+        <span v-else key="count">{{ count === 1 ? '1 user' : count + ' users' }}</span>
+      </transition>
+    </div>
   </form>
 </template>
 
 <script>
-import { mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   computed: {
+    ...mapState('users', ['loading', 'count']),
     email: {
       get () {
         return this.$store.state.users.params.email
@@ -53,3 +60,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.search-form {
+  .input-group-search {
+    width: 320px;
+    max-width: 100%;
+  }
+}
+</style>

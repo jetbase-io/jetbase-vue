@@ -3,6 +3,7 @@ import _set from 'lodash/set'
 export const state = () => ({
   users: [],
   count: 0,
+  loading: false,
   params: {
     limit: 10,
     offset: 0,
@@ -18,8 +19,15 @@ export const getters = {
 
 export const actions = {
   async loadUsers ({ state, commit }) {
-    const { items: users, count } = await this.$api.get('users', state.params)
-    commit('receiveUsers', { users, count })
+    try {
+      commit('setLoading', true)
+      const { items: users, count } = await this.$api.get('users', state.params)
+      commit('receiveUsers', { users, count })
+    } catch (e) {
+      throw e
+    } finally {
+      commit('setLoading', false)
+    }
   }
 }
 
@@ -37,5 +45,8 @@ export const mutations = {
   },
   setParam (state, { param, value }) {
     _set(state, 'params.' + param, value)
+  },
+  setLoading (state, flag) {
+    state.loading = flag
   }
 }
