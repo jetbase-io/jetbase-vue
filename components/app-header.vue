@@ -30,14 +30,14 @@
         >
           <!--todo account page-->
           <a href="#" tabindex="0" class="dropdown-item">
-            <i class="fa fa-fw fa-user" /> Profile
+            <i class="fas fa-fw fa-user" /> Profile
           </a>
           <!--todo change password password-->
           <a href="#" tabindex="0" class="dropdown-item">
-            <i class="fa fa-fw fa-wrench" /> Change password
+            <i class="fas fa-key" /> Change password
           </a>
           <button type="button" tabindex="0" class="dropdown-item" @click="logout">
-            <i class="fa fa-fw fa-lock" /> Logout
+            <i class="fas fa-sign-out-alt" /> Logout
           </button>
         </div>
       </li>
