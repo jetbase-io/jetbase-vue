@@ -54,13 +54,12 @@ export default {
   */
   axios: {
     prefix: '/api/',
-    proxy: true
-  },
-  proxy: {
-    '/api/': {
-      target: process.env.API_BASE_URL,
-      pathRewrite: {
-        '^/api/': ''
+    proxy: {
+      '/api/': {
+        target: process.env.API_BASE_URL,
+        pathRewrite: {
+          '^/api/': ''
+        }
       }
     }
   },
