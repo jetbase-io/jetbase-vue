@@ -5,9 +5,9 @@
         <i class="fas fa-tachometer-alt" /> Dashboard
       </div>
       <div class="card-body">
-        <p class="text-danger">
+        <code>
           TODO some statistics and metrics badges
-        </p>
+        </code>
       </div>
     </div>
   </div>

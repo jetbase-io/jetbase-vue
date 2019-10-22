@@ -7,7 +7,7 @@
     </th>
     <td>
       <!--todo username-->
-      <span class="text-danger">TODO username</span>
+      <code>TODO username</code>
     </td>
     <td>
       <nuxt-link :to="userRoute">
@@ -24,7 +24,7 @@
     </td>
     <td>
       <!--todo role-->
-      <span class="text-danger">TODO role</span>
+      <code>TODO role</code>
     </td>
   </tr>
 </template>
