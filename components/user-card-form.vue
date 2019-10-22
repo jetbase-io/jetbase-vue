@@ -23,8 +23,8 @@
         </div>
       </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary btn-sm">
-          <i class="far fa-dot-circle" /> Create
+        <button type="submit" class="btn btn-primary btn-sm" :disabled="submitting">
+          <i :class="submitting ? 'fas fa-spinner fa-spin' : 'far fa-dot-circle'" /> Create
         </button>
         <a href="/users" class="btn btn-danger btn-sm" @click.prevent="cancel">
           <i class="fas fa-ban" /> Cancel
@@ -44,7 +44,8 @@ export default {
         last_name: null,
         email: null,
         role_id: null
-      }
+      },
+      submitting: false
     }
   },
   methods: {
