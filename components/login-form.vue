@@ -4,6 +4,9 @@
     <p class="text-muted">
       Sign In to your account
     </p>
+    <p v-if="error" class="text-danger">
+      {{ error }}
+    </p>
     <div class="mb-3 input-group">
       <div class="input-group-prepend">
         <span class="input-group-text"><i class="fas fa-user" /></span>
@@ -16,6 +19,7 @@
         autocomplete="email"
         type="text"
         class="form-control"
+        @keyup="error = null"
       >
     </div>
     <div class="mb-4 input-group">
@@ -30,6 +34,7 @@
         autocomplete="current-password"
         type="password"
         class="form-control"
+        @keyup="error = null"
       >
     </div>
     <div class="row">
@@ -86,7 +91,7 @@ export default {
         await this.$auth.login({ data: this.form })
       } catch (e) {
         if (e.response && [400].includes(e.response.status)) {
-          this.error = 'Неверный Email или пароль'
+          this.error = 'Invalid E-mail or Password'
         } else {
           throw e
         }
