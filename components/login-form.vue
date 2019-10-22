@@ -17,7 +17,7 @@
         v-model="form.email"
         placeholder="E-mail"
         autocomplete="email"
-        type="text"
+        type="email"
         class="form-control"
         @keyup="error = null"
       >
