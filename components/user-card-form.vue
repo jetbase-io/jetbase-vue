@@ -6,8 +6,10 @@
       </div>
       <div class="card-body">
         <div class="position-relative form-group">
-          <label for="username">Username</label>
-          <input id="username" v-model.trim="form.username" placeholder="Enter username" type="text" class="form-control">
+          <label>Username</label>
+          <!--todo username-->
+          <code class="d-block">TODO username</code>
+          <!--<input id="username" v-model.trim="form.username" placeholder="Enter username" type="text" class="form-control">-->
         </div>
         <div class="position-relative form-group">
           <label for="first_name">First name</label>
@@ -20,6 +22,11 @@
         <div class="position-relative form-group">
           <label for="email">E-mail</label>
           <input id="email" v-model.trim="form.email" placeholder="Enter e-mail" type="email" class="form-control">
+        </div>
+        <div class="position-relative form-group">
+          <label>Role</label>
+          <!--todo role-->
+          <code class="d-block">TODO role</code>
         </div>
       </div>
       <div class="card-footer">
@@ -35,11 +42,15 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, email } from 'vuelidate/lib/validators'
+
 export default {
+  mixins: [validationMixin],
   data () {
     return {
       form: {
-        username: null,
+        // username: null, // todo username
         first_name: null,
         last_name: null,
         email: null,
@@ -48,9 +59,20 @@ export default {
       submitting: false
     }
   },
+  validations: {
+    form: {
+      first_name: { required },
+      last_name: { required },
+      email: { required, email }
+    }
+  },
   methods: {
     submit () {
-      // todo
+      this.$v.form.$touch()
+      if (this.$v.form.$invalid) {
+        return // invalid form
+      }
+      console.log('send xhr') // todo
     },
     cancel () {
       // todo cancel xhr
