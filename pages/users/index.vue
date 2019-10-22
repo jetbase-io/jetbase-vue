@@ -40,23 +40,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import UsersTable from '../../components/users-table'
 
 export default {
   components: { UsersTable },
   data () {
-    return {
-      users: [
-        {
-          id: 1,
-          username: 'cr7', // todo add '', to db
-          first_name: 'Christiano',
-          last_name: 'Ronaldo',
-          email: 'ronaldo@gmail.com',
-          role_id: 0
-        }
-      ]
-    }
+    return {}
+  },
+  computed: {
+    ...mapState('users', ['users'])
+  },
+  async fetch ({ store }) {
+    await store.dispatch('users/loadUsers')
   }
 }
 </script>
