@@ -27,7 +27,7 @@
               </div>
               <div class="card-body">
                 <users-table :users="users" @deleted="deleteUser" />
-                <pagination :count="count" :value="page" @input="paginate" />
+                <pagination :count="count" :value="page" :per-page="params.limit" @input="paginate" />
               </div>
             </div>
           </div>
@@ -38,7 +38,8 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+import scrollIntoView from 'scroll-into-view'
 import UsersSearchForm from '../../components/users-search-form'
 import UsersTable from '../../components/users-table'
 import Pagination from '../../components/pagination'
@@ -47,15 +48,58 @@ export default {
   components: { UsersSearchForm, UsersTable, Pagination },
   computed: {
     ...mapState('users', ['users', 'count']),
-    ...mapGetters('users', ['page'])
+    ...mapGetters('users', ['page']),
+    params () {
+      return this.$store.state.users.params
+    }
   },
-  async fetch ({ store }) {
+  async fetch ({ store, query }) {
+    // extract page from GET
+    let page = parseInt(query.page || 1)
+    if (!page || page < 0) {
+      page = 1
+    }
+    // calc offset
+    const limit = store.state.users.params.limit || 10
+    const offset = (page - 1) * limit
+
+    // extract search string from GET
+    const email = (query.email || '').trim()
+
+    // set vuex users params
+    store.commit('users/setParams', { limit, offset, email })
+
+    // run initial xhr
     await store.dispatch('users/loadUsers')
   },
   methods: {
-    ...mapMutations('users', ['deleteUser']),
-    paginate () {
-      console.log('paginate') // todo paginate
+    ...mapActions('users', ['loadUsers']),
+    ...mapMutations('users', ['deleteUser', 'setParam', 'setParams']),
+
+    scrollTop () {
+      scrollIntoView(this.$el, {
+        time: 200,
+        align: {
+          top: 0,
+          topOffset: 55 // fixed header height
+        }
+      })
+    },
+
+    paginate (page) {
+      this.setParam({ param: 'offset', value: (page - 1) * this.params.limit })
+      this.scrollTop()
+
+      // build query
+      const query = Object.assign({}, this.$route.query)
+      if (this.page > 1) {
+        query.page = this.page
+      } else {
+        delete query.page
+      }
+
+      this.$router.replace({ name: this.$route.name, query })
+      return this.loadUsers()
     }
   }
 }
