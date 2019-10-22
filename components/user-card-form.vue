@@ -50,6 +50,7 @@
           <input
             :id="inputPrefix('email')"
             v-model.trim="form.email"
+            type="email"
             placeholder="Enter e-mail"
             class="form-control"
             :class="{'is-invalid': $v.form.email.$error}"
@@ -63,6 +64,7 @@
         <!--password-->
         <div v-if="!isUpdate" class="form-group">
           <label :for="inputPrefix('password')">Password</label>
+          <!--todo generate link-->
           <password-wrap :visible.sync="showPassword">
             <input
               :id="inputPrefix('password')"
@@ -135,6 +137,10 @@ export default {
     passwordMinLength: {
       type: Number,
       default: 8
+    },
+    updateUser: {
+      default: null,
+      validator: prop => typeof prop === 'object' || prop === null
     }
   },
   data () {
@@ -170,19 +176,35 @@ export default {
   },
   computed: {
     isUpdate () {
-      return false
+      return !!this.updateUser
     }
   },
   methods: {
     inputPrefix (id) {
       return this.inputIdPrefix + id
     },
-    submit () {
+    async submit () {
+      // client validation
       this.$v.form.$touch()
       if (this.$v.form.$invalid) {
         return // invalid form
       }
-      console.log('send xhr') // todo
+
+      try {
+        this.submitting = true
+
+        if (this.isUpdate) {
+          // todo update user
+        } else {
+          const res = await this.$api.post('users', this.form)
+          this.$toasted.success('User successfully created')
+          this.$emit('created', res)
+        }
+      } catch (e) {
+        throw e
+      } finally {
+        this.submitting = false
+      }
     },
     cancel () {
       // todo cancel xhr
