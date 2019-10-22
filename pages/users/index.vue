@@ -16,7 +16,7 @@
 
     <!--page content-->
     <div class="container-fluid">
-      <div class="animated fadeIn">
+      <transition name="fade" appear>
         <div class="row">
           <div class="col-xl-12">
             <div class="card">
@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
       users: [
         {
           id: 1,
-          username: 'cr7', // todo add to db
+          username: 'cr7', // todo add '', to db
           first_name: 'Christiano',
           last_name: 'Ronaldo',
           email: 'ronaldo@gmail.com',
