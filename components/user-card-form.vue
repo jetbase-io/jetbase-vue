@@ -90,7 +90,7 @@
           >
           <div v-if="$v.form.password_confirmation.$error" class="invalid-feedback">
             <template v-if="!$v.form.password_confirmation.required">Please repeat password</template>
-            <template v-if="!$v.form.password_confirmation.minLength">Passwords are not same</template>
+            <template v-if="!$v.form.password_confirmation.sameAs">Passwords are different</template>
           </div>
         </div>
 
