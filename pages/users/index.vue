@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import UsersSearchForm from '../../components/users-search-form'
 import UsersTable from '../../components/users-table'
 import Pagination from '../../components/pagination'
@@ -47,9 +47,7 @@ export default {
   components: { UsersSearchForm, UsersTable, Pagination },
   computed: {
     ...mapState('users', ['users', 'count']),
-    page () {
-      return 1
-    }
+    ...mapGetters('users', ['page'])
   },
   async fetch ({ store }) {
     await store.dispatch('users/loadUsers')

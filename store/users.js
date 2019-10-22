@@ -14,6 +14,9 @@ export const state = () => ({
 export const getters = {
   userById: state => (id) => {
     return state.users.find(u => u.id === id)
+  },
+  page (state) {
+    return Math.floor(state.params.offset / state.params.limit) + 1
   }
 }
 
