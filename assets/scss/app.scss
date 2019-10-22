@@ -66,3 +66,7 @@ html {
 .app-header, .app-footer, .sidebar, .main, .aside-menu {
   transition: margin-left 0.25s, margin-right 0.25s, width 0.25s, flex 0.25s;
 }
+
+.breadcrumb {
+  border-bottom: 1px solid #c8ced3;
+}
