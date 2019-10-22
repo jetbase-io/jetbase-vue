@@ -111,7 +111,8 @@
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary btn-sm" :disabled="submitting">
-          <i :class="submitting ? 'fas fa-spinner fa-spin' : 'far fa-dot-circle'" /> Create
+          <i :class="submitting ? 'fas fa-spinner fa-spin' : 'far fa-dot-circle'" />
+          {{ isUpdate ? 'Update' : 'Create' }}
         </button>
         <a href="/users" class="btn btn-danger btn-sm" @click.prevent="cancel">
           <i class="fas fa-ban" /> Cancel
@@ -210,8 +211,15 @@ export default {
         this.submitting = true
 
         if (this.isUpdate) {
-          // todo update user
+          // update user
+          const res = await this.$api.put('users/' + this.updateUser.id, this.form, {}, new CancelToken((cancel) => {
+            this.cancelXhr = cancel // uses for cancel xhr
+          }))
+          this.cancelXhr = null
+          this.$toasted.success('User successfully updated')
+          this.$emit('updated', res)
         } else {
+          // create new user
           const res = await this.$api.post('users', this.form, {}, new CancelToken((cancel) => {
             this.cancelXhr = cancel // uses for cancel xhr
           }))
