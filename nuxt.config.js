@@ -33,7 +33,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/api'
+    '~/plugins/api',
+    { src: '~/plugins/vue-toasted', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
