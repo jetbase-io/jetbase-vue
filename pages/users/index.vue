@@ -45,9 +45,6 @@ import Pagination from '../../components/pagination'
 
 export default {
   components: { UsersSearchForm, UsersTable, Pagination },
-  data () {
-    return {}
-  },
   computed: {
     ...mapState('users', ['users', 'count']),
     page () {
