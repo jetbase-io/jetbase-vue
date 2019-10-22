@@ -87,6 +87,9 @@ export default {
     transform: translate3d(0, 37px, 0);
     left: auto;
   }
+  .navbar-toggler {
+    outline: 0;
+  }
 }
 
 @media (min-width: 992px) {
