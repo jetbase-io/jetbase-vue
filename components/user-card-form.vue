@@ -63,35 +63,39 @@
         <!--password-->
         <div v-if="!isUpdate" class="form-group">
           <label :for="inputPrefix('password')">Password</label>
-          <input
-            :id="inputPrefix('password')"
-            v-model.trim="form.password"
-            type="password"
-            :placeholder="`Enter password, min ${passwordMinLength} symbols`"
-            class="form-control"
-            :class="{'is-invalid': $v.form.password.$error}"
-          >
-          <div v-if="$v.form.password.$error" class="invalid-feedback">
-            <template v-if="!$v.form.password.required">Please enter password</template>
-            <template v-if="!$v.form.password.minLength">Password minimum length {{ passwordMinLength }} symbols</template>
-          </div>
+          <password-wrap :visible.sync="showPassword">
+            <input
+              :id="inputPrefix('password')"
+              v-model="form.password"
+              :type="showPassword ? 'text' : 'password'"
+              :placeholder="`Enter password, min ${passwordMinLength} symbols`"
+              class="form-control"
+              :class="{'is-invalid': $v.form.password.$error}"
+            >
+            <div v-if="$v.form.password.$error" class="invalid-feedback">
+              <template v-if="!$v.form.password.required">Please enter password</template>
+              <template v-if="!$v.form.password.minLength">Password minimum length {{ passwordMinLength }} symbols</template>
+            </div>
+          </password-wrap>
         </div>
 
         <!--password confirmation-->
         <div v-if="!isUpdate" class="form-group">
           <label :for="inputPrefix('password_confirmation')">Confirm Password</label>
-          <input
-            :id="inputPrefix('password_confirmation')"
-            v-model.trim="form.password_confirmation"
-            type="password"
-            :placeholder="`Repeat password again`"
-            class="form-control"
-            :class="{'is-invalid': $v.form.password_confirmation.$error}"
-          >
-          <div v-if="$v.form.password_confirmation.$error" class="invalid-feedback">
-            <template v-if="!$v.form.password_confirmation.required">Please repeat password</template>
-            <template v-if="!$v.form.password_confirmation.sameAsPassword">Passwords are different</template>
-          </div>
+          <password-wrap :visible.sync="showPassword">
+            <input
+              :id="inputPrefix('password_confirmation')"
+              v-model="form.password_confirmation"
+              :type="showPassword ? 'text' : 'password'"
+              :placeholder="`Repeat password again`"
+              class="form-control"
+              :class="{'is-invalid': $v.form.password_confirmation.$error}"
+            >
+            <div v-if="$v.form.password_confirmation.$error" class="invalid-feedback">
+              <template v-if="!$v.form.password_confirmation.required">Please repeat password</template>
+              <template v-if="!$v.form.password_confirmation.sameAsPassword">Passwords are different</template>
+            </div>
+          </password-wrap>
         </div>
 
         <!--role-->
@@ -116,8 +120,10 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+import PasswordWrap from './password-wrap'
 
 export default {
+  components: { PasswordWrap },
   mixins: [validationMixin],
   props: {
     inputIdPrefix: {
@@ -140,6 +146,7 @@ export default {
         password: null,
         password_confirmation: null
       },
+      showPassword: false,
       submitting: false
     }
   },
