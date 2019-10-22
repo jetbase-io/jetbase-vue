@@ -7,3 +7,16 @@
 .fade-leave-active {
   transition: opacity 1s;
 }
+
+
+
+// fade with 300ms duration
+.fade300-enter,
+.fade300-leave-to {
+  opacity: 0;
+}
+
+.fade300-enter-active,
+.fade300-leave-active {
+  transition: opacity .3s;
+}
