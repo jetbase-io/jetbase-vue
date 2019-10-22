@@ -5,7 +5,7 @@ export const state = () => ({
   count: 0,
   loading: false,
   params: {
-    limit: 1,
+    limit: 10,
     offset: 0,
     email: '' // search term
   }
