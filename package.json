@@ -1,18 +1,30 @@
 {
   "name": "jetbase-vue",
-  "version": "0.0.1",
-  "description": "Vue client for Jetbase application",
+  "version": "1.0.0",
+  "description": "My transcendent Nuxt.js project",
+  "author": "lukas",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jetbase-io/jetbase-vue.git"
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "@nuxtjs/axios": "^5.3.6"
   },
-  "author": "Lukas Pierce <kosha.industry@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jetbase-io/jetbase-vue/issues"
-  },
-  "homepage": "https://github.com/jetbase-io/jetbase-vue#readme"
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.1.0",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "vue-jest": "^4.0.0-0"
+  }
 }
