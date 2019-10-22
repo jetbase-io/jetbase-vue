@@ -73,6 +73,13 @@ export default {
 
 <style lang="scss">
 .app-header {
+  position: relative;
+  flex-direction: row;
+  height: 55px;
+  margin: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #c8ced3;
+  flex: 0 0 55px;
   .dropdown-menu {
     position: absolute;
     top: 0;
@@ -82,4 +89,13 @@ export default {
     left: auto;
   }
 }
+
+@media (min-width: 992px) {
+  .header-fixed .app-header {
+    position: fixed;
+    z-index: 1020;
+    width: 100%;
+  }
+}
+
 </style>
