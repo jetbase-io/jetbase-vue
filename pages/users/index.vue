@@ -4,13 +4,9 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <nuxt-link :to="{name:'index'}">
-            Dashboard
-          </nuxt-link>
+          <nuxt-link :to="{name:'index'}">Dashboard</nuxt-link>
         </li>
-        <li class="active breadcrumb-item" aria-current="page">
-          Users
-        </li>
+        <li class="active breadcrumb-item" aria-current="page">Users</li>
       </ol>
     </nav>
 
