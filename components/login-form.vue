@@ -39,8 +39,9 @@
     </div>
     <div class="row">
       <div class="col-6">
-        <button class="px-4 btn btn-primary">
+        <button class="px-4 btn btn-primary ld-ext-right" :disabled="submitting" :class="{running:submitting}">
           Login
+          <span class="ld ld-ring ld-spin" />
         </button>
       </div>
       <div class="text-right col-6">
