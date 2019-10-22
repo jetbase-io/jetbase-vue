@@ -104,7 +104,7 @@ export default {
 <style lang="scss">
 .login-form {
   .input-group-text {
-    color: #73818f;
+    color: rgba(115, 129, 143, 0.5);
   }
 }
 </style>
