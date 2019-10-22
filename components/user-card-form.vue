@@ -61,7 +61,7 @@
         </div>
 
         <!--password-->
-        <div class="form-group">
+        <div v-if="!isUpdate" class="form-group">
           <label :for="inputPrefix('password')">Password</label>
           <input
             :id="inputPrefix('password')"
@@ -76,7 +76,23 @@
             <template v-if="!$v.form.password.minLength">Password minimum length {{ passwordMinLength }} symbols</template>
           </div>
         </div>
-        <!--todo password confirmation-->
+
+        <!--password confirmation-->
+        <div v-if="!isUpdate" class="form-group">
+          <label :for="inputPrefix('password_confirmation')">Confirm Password</label>
+          <input
+            :id="inputPrefix('password_confirmation')"
+            v-model.trim="form.password_con"
+            type="password"
+            :placeholder="`Repeat password again`"
+            class="form-control"
+            :class="{'is-invalid': $v.form.password_confirmation.$error}"
+          >
+          <div v-if="$v.form.password_confirmation.$error" class="invalid-feedback">
+            <template v-if="!$v.form.password_confirmation.required">Please repeat password</template>
+            <template v-if="!$v.form.password_confirmation.minLength">Passwords are not same</template>
+          </div>
+        </div>
 
         <!--role-->
         <div class="form-group">
@@ -99,7 +115,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength } from 'vuelidate/lib/validators'
+import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
@@ -128,13 +144,24 @@ export default {
     }
   },
   validations () {
+    const formValidations = {
+      first_name: { required },
+      last_name: { required },
+      email: { required, email }
+    }
+
+    // only for create new user
+    if (!this.isUpdate) {
+      formValidations.password = { required, minLength: minLength(this.passwordMinLength) }
+      formValidations.password_confirmation = { required, sameAs: sameAs('password') }
+    }
     return {
-      form: {
-        first_name: { required },
-        last_name: { required },
-        email: { required, email },
-        password: { required, minLength: minLength(this.passwordMinLength) }
-      }
+      form: formValidations
+    }
+  },
+  computed: {
+    isUpdate () {
+      return false
     }
   },
   methods: {
