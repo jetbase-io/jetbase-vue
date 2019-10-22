@@ -2,7 +2,7 @@
   <div class="card mb-3">
     <form class="user-form" @submit.prevent="submit">
       <div class="card-header">
-        <i class="far fa-edit text-muted" />New user
+        <i class="far fa-edit text-muted" />New User
       </div>
       <div class="card-body">
         <div class="position-relative form-group">
