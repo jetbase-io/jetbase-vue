@@ -1,13 +1,13 @@
 <template>
   <header class="app-header navbar">
-    <button type="button" class="d-lg-none navbar-toggler">
+    <button type="button" class="d-lg-none navbar-toggler" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
     <a class="navbar-brand">
       <img src="/media/logo.537211e7.svg" width="89" height="25" alt="JetBase Logo" class="navbar-brand-full">
       <img src="/media/sygnet.c8d5c2d9.svg" width="30" height="30" alt="JetBase Logo" class="navbar-brand-minimized">
     </a>
-    <button type="button" class="d-md-down-none navbar-toggler">
+    <button type="button" class="d-md-down-none navbar-toggler" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
     <ul class="ml-auto navbar-nav">
