@@ -124,6 +124,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+import { CancelToken } from 'axios'
 import PasswordWrap from './password-wrap'
 
 export default {
@@ -155,7 +156,8 @@ export default {
         password_confirmation: null
       },
       showPassword: false,
-      submitting: false
+      submitting: false,
+      cancelXhr: null
     }
   },
   validations () {
@@ -196,7 +198,10 @@ export default {
         if (this.isUpdate) {
           // todo update user
         } else {
-          const res = await this.$api.post('users', this.form)
+          const res = await this.$api.post('users', this.form, {}, new CancelToken((cancel) => {
+            this.cancelXhr = cancel // uses for cancel xhr
+          }))
+          this.cancelXhr = null
           this.$toasted.success('User successfully created')
           this.$emit('created', res)
         }
@@ -217,7 +222,7 @@ export default {
       }
     },
     cancel () {
-      // todo cancel xhr
+      this.cancelXhr && this.cancelXhr()
       this.$router.back()
     }
   }
