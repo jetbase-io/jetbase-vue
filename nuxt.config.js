@@ -13,7 +13,9 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/gh/loadingio/loading.css@2.0.0/dist/loading.min.css' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/gh/loadingio/ldBtn/dist/ldbtn.min.css' }
     ]
   },
   /*
