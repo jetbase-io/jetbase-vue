@@ -21,6 +21,7 @@
     "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
     "nuxt": "^2.0.0",
+    "scroll-into-view": "^1.11.0",
     "vue": "^2.6.10",
     "vue-toasted": "^1.1.27",
     "vuejs-paginate": "^2.1.0",
