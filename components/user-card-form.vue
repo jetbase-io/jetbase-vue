@@ -71,6 +71,7 @@
               :placeholder="`Enter password, min ${passwordMinLength} symbols`"
               class="form-control"
               :class="{'is-invalid': $v.form.password.$error}"
+              autocomplete="off"
             >
             <div v-if="$v.form.password.$error" class="invalid-feedback">
               <template v-if="!$v.form.password.required">Please enter password</template>
@@ -90,6 +91,7 @@
               :placeholder="`Repeat password again`"
               class="form-control"
               :class="{'is-invalid': $v.form.password_confirmation.$error}"
+              autocomplete="off"
             >
             <div v-if="$v.form.password_confirmation.$error" class="invalid-feedback">
               <template v-if="!$v.form.password_confirmation.required">Please repeat password</template>
