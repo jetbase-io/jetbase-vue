@@ -4,6 +4,8 @@ export const state = () => ({
   users: [],
   count: 0,
   params: {
+    limit: 10,
+    offset: 0,
     email: '' // search term
   }
 })
@@ -15,8 +17,8 @@ export const getters = {
 }
 
 export const actions = {
-  async loadUsers ({ commit }) {
-    const { items: users, count } = await this.$api.get('users')
+  async loadUsers ({ state, commit }) {
+    const { items: users, count } = await this.$api.get('users', state.params)
     commit('receiveUsers', { users, count })
   }
 }
