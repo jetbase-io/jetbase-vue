@@ -30,6 +30,10 @@ import LoginForm from '../components/login-form'
 
 export default {
   components: { LoginForm },
-  layout: 'auth'
+  head: {
+    title: 'Login'
+  },
+  layout: 'auth',
+  auth: 'guest'
 }
 </script>
