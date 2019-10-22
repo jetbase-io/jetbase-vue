@@ -21,6 +21,10 @@ export default class Api {
     return this.call('PUT', endpoint, data, params, cancelToken)
   }
 
+  delete (endpoint, data = {}, params = {}, cancelToken = null) {
+    return this.call('DELETE', endpoint, data, params, cancelToken)
+  }
+
   get (endpoint, params = {}, cancelToken = null) {
     return this.call('GET', endpoint, {}, params, cancelToken)
   }
