@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit">
+  <form class="login-form" @submit.prevent="submit">
     <h1>Login</h1>
     <p class="text-muted">
       Sign In to your account
@@ -100,3 +100,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.login-form {
+  .input-group-text {
+    color: #73818f;
+  }
+}
+</style>
