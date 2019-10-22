@@ -7,27 +7,27 @@
       <div class="card-body">
         <div class="position-relative form-group">
           <label for="username">Username</label>
-          <input id="username" placeholder="Enter username" type="text" class="form-control">
+          <input id="username" v-model.trim="form.username" placeholder="Enter username" type="text" class="form-control">
         </div>
         <div class="position-relative form-group">
           <label for="first_name">First name</label>
-          <input id="first_name" placeholder="Enter first name" type="text" class="form-control">
+          <input id="first_name" v-model.trim="form.first_name" placeholder="Enter first name" type="text" class="form-control">
         </div>
         <div class="position-relative form-group">
           <label for="last_name">Last name</label>
-          <input id="last_name" placeholder="Enter last name" type="text" class="form-control">
+          <input id="last_name" v-model.trim="form.last_name" placeholder="Enter last name" type="text" class="form-control">
         </div>
         <div class="position-relative form-group">
           <label for="email">E-mail</label>
-          <input id="email" placeholder="Enter e-mail" type="email" class="form-control">
+          <input id="email" v-model.trim="form.email" placeholder="Enter e-mail" type="email" class="form-control">
         </div>
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary btn-sm">
-          <i class="fa fa-dot-circle-o" /> Create
+          <i class="far fa-dot-circle" /> Create
         </button>
         <a href="/users" class="btn btn-danger btn-sm" @click.prevent="cancel">
-          <i class="fa fa-ban" /> Cancel
+          <i class="fas fa-ban" /> Cancel
         </a>
       </div>
     </form>
