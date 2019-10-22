@@ -6,9 +6,8 @@
       </nuxt-link>
     </th>
     <td>
-      <nuxt-link :to="userRoute">
-        {{ user.username }}
-      </nuxt-link>
+      <!--todo username-->
+      <span class="text-danger">TODO username</span>
     </td>
     <td>
       <nuxt-link :to="userRoute">
