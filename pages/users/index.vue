@@ -19,7 +19,7 @@
       <transition name="fade" appear>
         <div class="row">
           <div class="col-xl-12">
-            <div class="card">
+            <div class="card mb-3">
               <div class="card-header">
                 <i class="fas fa-list-ul" /> Users
                 <div class="card-header-actions">
