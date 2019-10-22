@@ -64,6 +64,7 @@
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.2);
     border: 0;
+    outline: 0;
     &::before {
       position: absolute;
       top: 0;
