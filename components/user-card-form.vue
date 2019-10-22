@@ -1,3 +1,4 @@
+<!--suppress HtmlFormInputWithoutLabel -->
 <template>
   <div class="card mb-3">
     <form class="user-form" @submit.prevent="submit">
@@ -6,7 +7,7 @@
       </div>
       <div class="card-body">
         <!--username-->
-        <div class="position-relative form-group">
+        <div class="form-group">
           <label>Username</label>
           <!--todo username-->
           <code class="d-block">TODO username</code>
@@ -14,38 +15,56 @@
         </div>
 
         <!--first name-->
-        <div class="position-relative form-group">
-          <label for="first_name">First name</label>
+        <div class="form-group">
+          <label :for="inputPrefix('first_name')">First name</label>
           <input
-            id="first_name"
+            :id="inputPrefix('first_name')"
             v-model.trim="form.first_name"
             placeholder="Enter first name"
-            type="text"
             class="form-control"
-            :class="{'is-invalid': true}"
+            :class="{'is-invalid': $v.form.first_name.$error}"
           >
-          <div class="invalid-feedback">
-            First name Error
+          <div v-if="$v.form.first_name.$error" class="invalid-feedback">
+            <template v-if="!$v.form.first_name.required">
+              Please enter first name
+            </template>
           </div>
         </div>
 
         <!--last name-->
-        <div class="position-relative form-group">
-          <label for="last_name">Last name</label>
-          <input id="last_name" v-model.trim="form.last_name" placeholder="Enter last name" type="text" class="form-control">
+        <div class="form-group">
+          <label :for="inputPrefix('last_name')">Last name</label>
+          <input
+            :id="inputPrefix('last_name')"
+            v-model.trim="form.last_name"
+            placeholder="Enter last name"
+            class="form-control"
+            :class="{'is-invalid': $v.form.last_name.$error}"
+          >
+          <div v-if="$v.form.last_name.$error" class="invalid-feedback">
+            <template v-if="!$v.form.last_name.required">
+              Please enter last name
+            </template>
+          </div>
         </div>
 
         <!--email-->
-        <div class="position-relative form-group">
-          <label for="email">E-mail</label>
-          <input id="email" v-model.trim="form.email" placeholder="Enter e-mail" type="email" class="form-control">
+        <div class="form-group">
+          <label :for="inputPrefix('email')">E-mail</label>
+          <input
+            :id="inputPrefix('email')"
+            v-model.trim="form.email"
+            placeholder="Enter e-mail"
+            type="email"
+            class="form-control"
+          >
         </div>
 
         <!--todo password-->
         <!--todo password confirmation-->
 
         <!--role-->
-        <div class="position-relative form-group">
+        <div class="form-group">
           <label>Role</label>
           <!--todo role-->
           <code class="d-block">TODO role</code>
@@ -69,6 +88,12 @@ import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
+  props: {
+    inputIdPrefix: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       form: {
@@ -89,6 +114,9 @@ export default {
     }
   },
   methods: {
+    inputPrefix (id) {
+      return this.inputIdPrefix + id
+    },
     submit () {
       this.$v.form.$touch()
       if (this.$v.form.$invalid) {
