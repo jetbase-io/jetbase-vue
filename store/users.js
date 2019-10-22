@@ -20,5 +20,12 @@ export const mutations = {
   receiveUsers (state, { users, count }) {
     state.users = users
     state.count = count
+  },
+  deleteUser (state, id) {
+    const index = state.users.findIndex(u => u.id === id)
+    if (~index) {
+      state.users.splice(index, 1)
+      state.count--
+    }
   }
 }
