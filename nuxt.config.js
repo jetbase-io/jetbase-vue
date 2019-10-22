@@ -85,6 +85,9 @@ export default {
     plugins: [
     ]
   },
+  router: {
+    middleware: ['auth']
+  },
   /*
   ** Build configuration
   */
