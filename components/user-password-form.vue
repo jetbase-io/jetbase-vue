@@ -29,11 +29,13 @@
         <!--password-->
         <div class="form-group">
           <label :for="inputPrefix('password')">Password</label>
-          <!--todo generate link-->
+          <a ref="generatePassword" href="#" class="float-right" @click.prevent="generatePassword">Generate</a>
           <password-wrap :visible.sync="showPassword">
             <input
               :id="inputPrefix('password')"
+              ref="password"
               v-model="form.password"
+              v-tooltip="{content: 'Copied!', placement: 'bottom', trigger: 'manual', show: showPasswordCopied }"
               :type="showPassword ? 'text' : 'password'"
               :placeholder="`Enter password, min ${passwordMinLength} symbols`"
               class="form-control"
@@ -84,6 +86,8 @@
 import { validationMixin } from 'vuelidate'
 import { required, minLength, sameAs } from 'vuelidate/lib/validators'
 import { CancelToken } from 'axios'
+import ClipboardJS from 'clipboard'
+import { generatePassword } from '../lib/helpers'
 import { PASSWORD_MIN_LENGTH } from '../config'
 import PasswordWrap from './password-wrap'
 
@@ -112,8 +116,10 @@ export default {
         password_confirmation: null
       },
       showPassword: false,
+      showPasswordCopied: false,
       submitting: false,
-      cancelXhr: null
+      cancelXhr: null,
+      clipboard: null
     }
   },
   validations () {
@@ -134,9 +140,35 @@ export default {
       }
     }
   },
+  mounted () {
+    this.createPasswordClipboard()
+  },
+  beforeDestroy () {
+    this.clipboard && this.clipboard.destroy()
+  },
   methods: {
+    createPasswordClipboard () {
+      this.clipboard = new ClipboardJS(this.$refs.generatePassword, {
+        target: () => {
+          return this.$refs.password
+        }
+      })
+      this.clipboard.on('success', (e) => {
+        e.clearSelection()
+        this.showPasswordCopied = true
+        setTimeout(() => {
+          this.showPasswordCopied = false
+        }, 1000)
+      })
+    },
     inputPrefix (id) {
       return this.inputIdPrefix + id
+    },
+    generatePassword () {
+      const password = generatePassword(this.passwordMinLength)
+      this.form.password = password
+      this.form.password_confirmation = password
+      this.showPassword = true
     },
     async submit () {
       // client validation
