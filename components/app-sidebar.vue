@@ -3,9 +3,9 @@
     <div class="scrollbar-container sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <nuxt-link class="nav-link" :to="{name:'users'}">
+          <a href="/users" class="nav-link" @click.prevent="goto({name:'users'})">
             <i class="fas fa-users nav-icon" />Users
-          </nuxt-link>
+          </a>
           <!--todo roles-->
           <a href="#" class="nav-link">
             <i class="fas fa-user-shield nav-icon" />Roles
@@ -19,6 +19,19 @@
     </button>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    goto (route) {
+      this.$router.push(route)
+      if (this.$device.isMobile) {
+        this.$emit('goto', route)
+      }
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 .sidebar {

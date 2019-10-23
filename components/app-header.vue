@@ -3,10 +3,10 @@
     <button type="button" class="d-lg-none navbar-toggler navbar-toggler-mobile" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
-    <nuxt-link class="navbar-brand" to="/">
+    <a href="/" class="navbar-brand" @click.prevent="logoClick">
       <img src="/media/logo.svg" width="100" height="30" alt="JetBase Logo" class="navbar-brand-full">
       <img src="/media/logo-small.svg" width="30" height="30" alt="JetBase Logo" class="navbar-brand-minimized">
-    </nuxt-link>
+    </a>
     <button type="button" class="d-none d-lg-block navbar-toggler" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
@@ -18,7 +18,7 @@
           href="#"
           class="nav-link"
           :aria-expanded="showDropdown ? 'true' : 'false'"
-          @click.prevent="showDropdown = !showDropdown"
+          @click.prevent="ddClick"
         >
           <span class="pointer-events-none d-sm-none"><i class="fas fa-fw fa-user" /></span>
           <span class="pointer-events-none d-none d-sm-inline">{{ $auth.user.email }}</span>
@@ -60,6 +60,14 @@ export default {
     document.removeEventListener('click', this.docClick)
   },
   methods: {
+    logoClick () {
+      this.$router.push('/')
+      this.$emit('logoClick')
+    },
+    ddClick () {
+      this.showDropdown = !this.showDropdown
+      this.$emit('ddClick')
+    },
     docClick (e) {
       if (e.target !== this.$refs.email) {
         this.showDropdown = false

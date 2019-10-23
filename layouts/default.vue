@@ -1,8 +1,8 @@
 <template>
   <div id="layout-default" class="app">
-    <app-header @toggleSidebar="showSidebar = !showSidebar" />
+    <app-header @toggleSidebar="showSidebar = !showSidebar" @logoClick="hideSidebarIfMobile" @ddClick="hideSidebarIfMobile" />
     <div class="app-body">
-      <app-sidebar @toggleMinimized="sidebarMinimized = !sidebarMinimized" />
+      <app-sidebar @toggleMinimized="sidebarMinimized = !sidebarMinimized" @goto="hideSidebarIfMobile" />
       <main class="main" @click="showSidebar = false">
         <nuxt />
       </main>
@@ -63,6 +63,14 @@ export default {
         return 'sidebar-lg-show' // Desktop
       } else {
         return 'sidebar-show' // Mobile
+      }
+    }
+  },
+  methods: {
+    hideSidebarIfMobile () {
+      console.log('hideSidebarIfMobile')
+      if (this.$device.isMobile && this.showSidebar) {
+        this.showSidebar = false
       }
     }
   }
