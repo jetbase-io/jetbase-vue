@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <div class="scrollbar-container sidebar-nav ps ps-container ps--active-y">
+    <div class="scrollbar-container sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
           <nuxt-link class="nav-link" :to="{name:'users'}">
