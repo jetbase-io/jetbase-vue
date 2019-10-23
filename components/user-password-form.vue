@@ -9,7 +9,7 @@
 
         <!--old password-->
         <div class="form-group">
-          <label :for="inputPrefix('password_old')">Old password</label>
+          <label :for="inputPrefix('password_old')">Old Password</label>
           <password-wrap :visible.sync="showPassword">
             <input
               :id="inputPrefix('password_old')"
