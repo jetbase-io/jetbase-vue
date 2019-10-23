@@ -128,6 +128,16 @@ export default {
   }
 }
 
+@media (max-width: 991.98px) {
+  .app-header {
+    position: fixed;
+    z-index: 1020;
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+  }
+}
+
 @media (min-width: 992px) {
   .header-fixed .app-header {
     position: fixed;
