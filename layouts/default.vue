@@ -1,9 +1,8 @@
 <template>
   <div id="layout-default" class="app">
-    <app-header @toggleSidebar="toggleSidebar" />
+    <app-header @toggleSidebar="showSidebar = !showSidebar" />
     <div class="app-body">
-      <!--todo minimize sidebar-->
-      <app-sidebar @toggle="toggleSidebar" />
+      <app-sidebar @toggleMinimized="sidebarMinimized = !sidebarMinimized" />
       <main class="main">
         <nuxt />
       </main>
@@ -28,7 +27,12 @@ export default {
     ]
 
     if (this.showSidebar) {
-      bodyClass.push('sidebar-lg-show') // todo media queries
+      bodyClass.push('sidebar-lg-show')
+    }
+
+    if (this.sidebarMinimized) {
+      bodyClass.push('sidebar-minimized')
+      bodyClass.push('brand-minimized')
     }
 
     return {
@@ -39,12 +43,8 @@ export default {
   },
   data () {
     return {
-      showSidebar: true
-    }
-  },
-  methods: {
-    toggleSidebar () {
-      this.showSidebar = !this.showSidebar
+      showSidebar: true,
+      sidebarMinimized: false
     }
   }
 }
