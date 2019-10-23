@@ -14,7 +14,7 @@
       </ul>
       <!--todo perfect scrollbar-->
     </div>
-    <button class="sidebar-minimizer mt-auto" type="button" aria-label="Toggle Sidebar" @click="$emit('toggleMinimized')">
+    <button class="sidebar-minimizer d-none d-lg-block mt-auto" type="button" aria-label="Toggle Sidebar" @click="$emit('toggleMinimized')">
       <i class="fas fa-chevron-left" />
     </button>
   </div>
@@ -101,8 +101,53 @@ html:not([dir="rtl"]) .sidebar {
   margin-left: -200px;
 }
 
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sidebar-show .main::before,
+  .aside-menu-show .main::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1018;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: rgba(0, 0, 0, 0.7);
+    animation: opacity .25s;
+  }
+}
+
+@media (min-width: 576px) {
+  html:not([dir="rtl"]) .sidebar-sm-show .sidebar,
+  html:not([dir="rtl"]) .sidebar-show .sidebar {
+    margin-left: 0;
+  }
+}
+
+html:not([dir="rtl"]) .sidebar-show .sidebar {
+  margin-left: 0;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    position: fixed;
+    z-index: 1019;
+    width: 200px;
+    height: calc(100vh - 55px);
+  }
+}
+
 @media (min-width: 992px) {
   .sidebar-fixed .sidebar {
+    border: 1px solid red;
     position: fixed;
     z-index: 1019;
     width: 200px;
