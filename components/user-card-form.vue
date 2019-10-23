@@ -208,7 +208,7 @@ export default {
     })
   },
   beforeDestroy () {
-    this.clipboard.destroy()
+    this.clipboard && this.clipboard.destroy()
   },
   created () {
     if (this.isUpdate) {
