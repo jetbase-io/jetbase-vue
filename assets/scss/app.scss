@@ -26,6 +26,9 @@ html {
 
 .navbar-nav .nav-link {
   color: #73818f;
+  &:hover, &:focus {
+    color: #2f353a;
+  }
 }
 
 .dropdown-menu {
@@ -107,4 +110,8 @@ html {
 
 .highlight {
   background: rgba($primary, .3);
+}
+
+.pointer-events-none {
+  pointer-events: none !important;
 }

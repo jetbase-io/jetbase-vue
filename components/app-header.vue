@@ -19,7 +19,10 @@
           class="nav-link"
           :aria-expanded="showDropdown ? 'true' : 'false'"
           @click.prevent="showDropdown = !showDropdown"
-        >{{ $auth.user.email }}</a>
+        >
+          <span class="pointer-events-none d-sm-none"><i class="fas fa-fw fa-user" /></span>
+          <span class="pointer-events-none d-none d-sm-inline">{{ $auth.user.email }}</span>
+        </a>
 
         <div
           tabindex="-1"
