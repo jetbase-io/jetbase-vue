@@ -6,6 +6,10 @@
           <nuxt-link class="nav-link" :to="{name:'users'}">
             <i class="fas fa-users nav-icon" />Users
           </nuxt-link>
+          <!--todo roles-->
+          <a href="#" class="nav-link">
+            <i class="fas fa-user-shield nav-icon" />Roles
+          </a>
         </li>
       </ul>
       <!--todo perfect scrollbar-->
