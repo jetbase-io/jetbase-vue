@@ -35,7 +35,8 @@ export default {
   plugins: [
     '~/plugins/api',
     { src: '~/plugins/vue-toasted', ssr: false },
-    '~/plugins/vue-filters'
+    '~/plugins/vue-filters',
+    { src: '~/plugins/v-tooltip', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
