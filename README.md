@@ -20,3 +20,11 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Testing
+
+``` bash
+npm test
+# run with coverage
+npm test -- --coverage
+```
