@@ -125,6 +125,15 @@ export default {
       }
     }
   },
+  computed: {
+    submitData () {
+      return {
+        old_password: this.form.password_old,
+        new_password: this.form.password
+        // todo password confirmation
+      }
+    }
+  },
   methods: {
     inputPrefix (id) {
       return this.inputIdPrefix + id
@@ -140,7 +149,7 @@ export default {
         this.submitting = true
         // change user's password
         const uri = 'users/' + this.user.id + '/password'
-        const res = await this.$api.put(uri, this.form, {}, new CancelToken((cancel) => {
+        const res = await this.$api.put(uri, this.submitData, {}, new CancelToken((cancel) => {
           this.cancelXhr = cancel // uses for cancel xhr
         }))
         this.cancelXhr = null
@@ -150,7 +159,7 @@ export default {
         let errorHandled = false
 
         // handle server validation errors
-        if (e.response && [400].includes(e.response.status)) {
+        if (e.response && [400, 403].includes(e.response.status)) {
           const message = e.response.data.message || e.response.statusText || 'Server Error'
           alert(message)
           errorHandled = true
