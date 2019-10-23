@@ -127,6 +127,7 @@ import _cloneDeep from 'lodash/cloneDeep'
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 import { CancelToken } from 'axios'
+import { PASSWORD_MIN_LENGTH } from '../config'
 import PasswordWrap from './password-wrap'
 
 export default {
@@ -139,7 +140,7 @@ export default {
     },
     passwordMinLength: {
       type: Number,
-      default: 8
+      default: PASSWORD_MIN_LENGTH
     },
     updateUser: {
       default: null,
