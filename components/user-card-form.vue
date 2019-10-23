@@ -194,18 +194,9 @@ export default {
     }
   },
   mounted () {
-    this.clipboard = new ClipboardJS(this.$refs.generatePassword, {
-      target: () => {
-        return this.$refs.password
-      }
-    })
-    this.clipboard.on('success', (e) => {
-      e.clearSelection()
-      this.showPasswordCopied = true
-      setTimeout(() => {
-        this.showPasswordCopied = false
-      }, 1000)
-    })
+    if (!this.isUpdate) {
+      this.createPasswordClipboard()
+    }
   },
   beforeDestroy () {
     this.clipboard && this.clipboard.destroy()
@@ -221,6 +212,20 @@ export default {
     }
   },
   methods: {
+    createPasswordClipboard () {
+      this.clipboard = new ClipboardJS(this.$refs.generatePassword, {
+        target: () => {
+          return this.$refs.password
+        }
+      })
+      this.clipboard.on('success', (e) => {
+        e.clearSelection()
+        this.showPasswordCopied = true
+        setTimeout(() => {
+          this.showPasswordCopied = false
+        }, 1000)
+      })
+    },
     inputPrefix (id) {
       return this.inputIdPrefix + id
     },
