@@ -1,13 +1,13 @@
 <template>
   <header class="app-header navbar">
-    <button type="button" class="d-lg-none navbar-toggler" @click="$emit('toggleSidebar')">
+    <button type="button" class="d-lg-none navbar-toggler navbar-toggler-mobile" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
     <nuxt-link class="navbar-brand" to="/">
       <img src="/media/logo.svg" width="100" height="30" alt="JetBase Logo" class="navbar-brand-full">
       <img src="/media/logo-small.svg" width="30" height="30" alt="JetBase Logo" class="navbar-brand-minimized">
     </nuxt-link>
-    <button type="button" class="d-md-down-none navbar-toggler" @click="$emit('toggleSidebar')">
+    <button type="button" class="d-none d-lg-block navbar-toggler" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
     <ul v-if="$auth.loggedIn" class="ml-auto navbar-nav">
@@ -90,12 +90,13 @@ export default {
   }
   .navbar-brand {
     height: 55px;
-    margin-left: -15px;
     width: 155px;
-    margin-right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    left: 50%;
+    margin: 0 0 0 -77.5px;
     .navbar-brand-minimized {
       display: none;
     }
@@ -110,6 +111,10 @@ export default {
       color: #2f353a;
     }
   }
+  .navbar-toggler-mobile {
+    width: 50px;
+    margin-left: -1rem;
+  }
 }
 
 @media (min-width: 992px) {
@@ -119,6 +124,11 @@ export default {
     width: 100%;
     top: 0;
     left: 0;
+  }
+
+  // desktop brand
+  .app-header .navbar-brand {
+    margin-left: -1rem;
   }
   // show small logo
   .brand-minimized .app-header .navbar-brand {
