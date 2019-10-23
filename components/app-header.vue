@@ -31,10 +31,9 @@
           <nuxt-link :to="{name:'users-id', params: {id: $auth.user.id}}" tabindex="0" class="dropdown-item">
             <i class="fas fa-fw fa-user" /> Profile
           </nuxt-link>
-          <!--todo change password password-->
-          <a href="#" tabindex="0" class="dropdown-item">
+          <nuxt-link :to="{name:'users-id-password', params: {id: $auth.user.id}}" tabindex="0" class="dropdown-item">
             <i class="fas fa-key" /> Change password
-          </a>
+          </nuxt-link>
           <button type="button" tabindex="0" class="dropdown-item" @click="logout">
             <i class="fas fa-sign-out-alt" /> Logout
           </button>

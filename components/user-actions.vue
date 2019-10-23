@@ -7,6 +7,13 @@
     >
       <i class="far fa-edit" />
     </nuxt-link>
+    <nuxt-link
+      :to="{name: 'users-id-password', params: {id: user.id}}"
+      class="card-header-action btn-setting btn btn-link"
+      aria-label="Change password"
+    >
+      <i class="fas fa-key" />
+    </nuxt-link>
     <button type="button" class="card-header-action btn-setting btn btn-link" aria-label="Delete user" @click="askDelete">
       <i class="far fa-trash-alt" />
     </button>
