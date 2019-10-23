@@ -10,7 +10,7 @@
     <button type="button" class="d-md-down-none navbar-toggler" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
-    <ul class="ml-auto navbar-nav">
+    <ul v-if="$auth.loggedIn" class="ml-auto navbar-nav">
       <li class="dropdown nav-item">
         <a
           ref="email"
