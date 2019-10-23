@@ -68,8 +68,8 @@ export default {
   },
   methods: {
     hideSidebarIfMobile () {
-      console.log('hideSidebarIfMobile')
-      if (this.$device.isMobile && this.showSidebar) {
+      const isMobile = window.matchMedia('(max-width: 575.98px)').matches
+      if (isMobile && this.showSidebar) {
         this.showSidebar = false
       }
     }
