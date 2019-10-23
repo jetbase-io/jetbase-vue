@@ -3,7 +3,7 @@
     <app-header @toggleSidebar="showSidebar = !showSidebar" @logoClick="hideSidebarIfMobile" @ddClick="hideSidebarIfMobile" />
     <div class="app-body">
       <app-sidebar @toggleMinimized="sidebarMinimized = !sidebarMinimized" @goto="hideSidebarIfMobile" />
-      <main class="main" @click="showSidebar = false">
+      <main class="main" @click="hideSidebarIfMobile">
         <nuxt />
       </main>
     </div>
