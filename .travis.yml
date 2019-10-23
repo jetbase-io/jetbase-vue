@@ -1,11 +1,18 @@
 language: node_js
 
-node_js:
-  - 'LTS'
+#node_js:
+#  - 'LTS'
 
 cache:
   directories:
     - node_modules
+
+before_install:
+  # install nodejs and npm manually
+  - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  - sudo apt-get install -y nodejs
+  - node --version
+  - npm --version
 
 install:
   - npm install
