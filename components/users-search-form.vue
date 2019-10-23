@@ -1,6 +1,6 @@
 <template>
   <form class="search-form users-search-form d-flex flex-nowrap align-items-center" @submit.prevent="search">
-    <div class="input-group input-group-search input-group-sm flex-nowrap m-0 mr-2">
+    <div class="input-group input-group-search input-group-sm flex-nowrap m-0 mr-sm-2">
       <label for="search-email" class="sr-only">Search users by E-mail</label>
 
       <input

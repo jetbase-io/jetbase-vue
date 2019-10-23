@@ -73,7 +73,8 @@ html {
   border-bottom: 1px solid #c8ced3;
 }
 
-.card-header > i {
+.card-header > i,
+.card-header .header-icon {
   margin-right: 0.5rem;
 }
 

@@ -17,13 +17,13 @@
           <div class="col-12">
             <div class="card users-card mb-3">
               <div class="card-header">
-                <i class="fas fa-list-ul" /> Users
-                <users-search-form class="ml-4 mr-auto" />
-                <div class="card-header-actions">
+                <span class="text-nowrap"><i class="fas fa-list-ul header-icon" /> Users</span>
+                <div class="card-header-actions ml-auto order-sm-last">
                   <nuxt-link :to="{name:'users-new'}" class="card-header-action btn-setting btn btn-link">
                     <i class="fas fa-plus" />
                   </nuxt-link>
                 </div>
+                <users-search-form class="ml-sm-4" />
               </div>
               <div class="card-body">
                 <users-table :users="users" @deleted="deleteUser" />
@@ -111,6 +111,22 @@ export default {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
+  }
+  @media (max-width: 575.98px) {
+    .card-header {
+      flex-wrap: wrap;
+      .search-form {
+        margin-top: 10px;
+        width: 100%;
+        .input-group-search {
+          width: 100%;
+          margin: 0;
+        }
+        .results {
+          display: none;
+        }
+      }
+    }
   }
 }
 </style>
