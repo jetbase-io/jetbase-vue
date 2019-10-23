@@ -128,7 +128,8 @@ export default {
 
   // desktop brand
   .app-header .navbar-brand {
-    margin-left: -1rem;
+    margin: 0 0 0 -1rem;
+    position: static;
   }
   // show small logo
   .brand-minimized .app-header .navbar-brand {
