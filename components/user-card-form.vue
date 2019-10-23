@@ -64,11 +64,13 @@
         <!--password-->
         <div v-if="!isUpdate" class="form-group">
           <label :for="inputPrefix('password')">Password</label>
-          <!--todo generate link-->
+          <a ref="generatePassword" href="#" class="float-right" @click.prevent="generatePassword">Generate</a>
           <password-wrap :visible.sync="showPassword">
             <input
               :id="inputPrefix('password')"
+              ref="password"
               v-model="form.password"
+              v-tooltip="{content: 'Copied!', placement: 'bottom', trigger: 'manual', show: showPasswordCopied }"
               :type="showPassword ? 'text' : 'password'"
               :placeholder="`Enter password, min ${passwordMinLength} symbols`"
               class="form-control"
@@ -127,6 +129,8 @@ import _cloneDeep from 'lodash/cloneDeep'
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 import { CancelToken } from 'axios'
+import ClipboardJS from 'clipboard'
+import { generatePassword } from '../lib/helpers'
 import { PASSWORD_MIN_LENGTH } from '../config'
 import PasswordWrap from './password-wrap'
 
@@ -159,8 +163,10 @@ export default {
         password_confirmation: null
       },
       showPassword: false,
+      showPasswordCopied: false,
       submitting: false,
-      cancelXhr: null
+      cancelXhr: null,
+      clipboard: null
     }
   },
   validations () {
@@ -187,6 +193,23 @@ export default {
       return this.isUpdate ? `Edit User: ${this.updateUser.id}` : 'New User'
     }
   },
+  mounted () {
+    this.clipboard = new ClipboardJS(this.$refs.generatePassword, {
+      target: () => {
+        return this.$refs.password
+      }
+    })
+    this.clipboard.on('success', (e) => {
+      e.clearSelection()
+      this.showPasswordCopied = true
+      setTimeout(() => {
+        this.showPasswordCopied = false
+      }, 1000)
+    })
+  },
+  beforeDestroy () {
+    this.clipboard.destroy()
+  },
   created () {
     if (this.isUpdate) {
       // clone update user object into form
@@ -200,6 +223,12 @@ export default {
   methods: {
     inputPrefix (id) {
       return this.inputIdPrefix + id
+    },
+    generatePassword () {
+      const password = generatePassword()
+      this.form.password = password
+      this.form.password_confirmation = password
+      this.showPassword = true
     },
     async submit () {
       // client validation
