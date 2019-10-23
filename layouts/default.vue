@@ -3,7 +3,7 @@
     <app-header @toggleSidebar="showSidebar = !showSidebar" />
     <div class="app-body">
       <app-sidebar @toggleMinimized="sidebarMinimized = !sidebarMinimized" />
-      <main class="main">
+      <main class="main" @click="showSidebar = false">
         <nuxt />
       </main>
     </div>
@@ -27,7 +27,7 @@ export default {
     ]
 
     if (this.showSidebar) {
-      bodyClass.push('sidebar-lg-show')
+      bodyClass.push(this.showSidebarClass)
     }
 
     if (this.sidebarMinimized) {
@@ -43,8 +43,27 @@ export default {
   },
   data () {
     return {
-      showSidebar: true,
+      showSidebar: this.$device.isDesktop,
       sidebarMinimized: false
+    }
+  },
+  computed: {
+    showSidebarClass () {
+      // show sidebar using media queries on client
+      if (process.client) {
+        if (window.matchMedia('(min-width: 992px)').matches) {
+          return 'sidebar-lg-show' // Desktop
+        } else {
+          return 'sidebar-show' // Mobile
+        }
+      }
+
+      // show sidebar using 'User-Agent' header on server
+      if (this.$device.isDesktop) {
+        return 'sidebar-lg-show' // Desktop
+      } else {
+        return 'sidebar-show' // Mobile
+      }
     }
   }
 }
@@ -55,6 +74,10 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.main {
+  position: relative;
 }
 
 .app-body {
