@@ -8,11 +8,6 @@ cache:
     - node_modules
 
 before_install:
-  # install nodejs and npm manually
-#  - curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
-#  - sudo bash nodesource_setup.sh
-#  - sudo apt install -y nodejs
-#  - source ~/.bashrc
   - node --version
   - npm --version
 
