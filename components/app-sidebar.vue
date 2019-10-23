@@ -3,7 +3,7 @@
     <div class="scrollbar-container sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <a href="/users" :class="{active:isRoute('users')}" class="nav-link" @click.prevent="goto({name:'users'})">
+          <a href="/users" class="nav-link" @click.prevent="goto({name:'users'})">
             <i class="fas fa-users nav-icon" />Users
           </a>
           <!--todo roles-->
@@ -28,9 +28,6 @@ export default {
       if (this.$device.isMobile) {
         this.$emit('goto', route)
       }
-    },
-    isRoute (prefix) {
-      return this.$route.name.startsWith(prefix)
     }
   }
 }
