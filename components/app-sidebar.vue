@@ -147,7 +147,6 @@ html:not([dir="rtl"]) .sidebar-show .sidebar {
 
 @media (min-width: 992px) {
   .sidebar-fixed .sidebar {
-    border: 1px solid red;
     position: fixed;
     z-index: 1019;
     width: 200px;
