@@ -1,12 +1,12 @@
 .tooltip {
   display: block !important;
   z-index: 10000;
-
+  $tooltip-fill: rgba(0, 0, 0, 0.8);
   .tooltip-inner {
-    background: black;
+    background: $tooltip-fill;
     color: white;
-    border-radius: 16px;
-    padding: 5px 10px 4px;
+    border-radius: .25rem;
+    padding: 2px 7px 1px;
   }
 
   .tooltip-arrow {
@@ -15,7 +15,7 @@
     border-style: solid;
     position: absolute;
     margin: 5px;
-    border-color: black;
+    border-color: $tooltip-fill;
     z-index: 1;
   }
 
