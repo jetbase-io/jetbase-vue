@@ -50,7 +50,8 @@ export default {
   */
   modules: [
     '@nuxtjs/axios', // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/auth' // Doc: https://auth.nuxtjs.org/
+    '@nuxtjs/auth', // Doc: https://auth.nuxtjs.org/
+    '@nuxtjs/device' // Doc: https://www.npmjs.com/package/@nuxtjs/device
   ],
   /*
   ** Axios module configuration
