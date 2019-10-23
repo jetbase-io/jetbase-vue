@@ -5,7 +5,7 @@
     </button>
     <nuxt-link class="navbar-brand" to="/">
       <img src="/media/logo.svg" width="100" height="30" alt="JetBase Logo" class="navbar-brand-full">
-      <!--<img src="/media/sygnet.c8d5c2d9.svg" width="30" height="30" alt="JetBase Logo" class="navbar-brand-minimized">-->
+      <img src="/media/logo-small.svg" width="30" height="30" alt="JetBase Logo" class="navbar-brand-minimized">
     </nuxt-link>
     <button type="button" class="d-md-down-none navbar-toggler" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
@@ -96,6 +96,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    .navbar-brand-minimized {
+      display: none;
+    }
   }
   .navbar-toggler {
     outline: 0;
@@ -116,6 +119,17 @@ export default {
     width: 100%;
     top: 0;
     left: 0;
+  }
+  // show small logo
+  .brand-minimized .app-header .navbar-brand {
+    width: 50px;
+    background-color: transparent;
+    .navbar-brand-full {
+      display: none;
+    }
+    .navbar-brand-minimized {
+      display: block;
+    }
   }
 }
 
