@@ -8,7 +8,7 @@
               <login-form />
             </div>
           </div>
-          <div class="text-white bg-primary py-5 d-md-down-none card" style="width: 44%;">
+          <div class="text-white bg-primary py-5 d-none d-lg-block card" style="width: 44%;">
             <div class="text-center card-body">
               <div>
                 <h2>Sign up</h2>
