@@ -36,13 +36,22 @@ export default {
       required: true
     }
   },
+  computed: {
+    isMe () {
+      return this.$auth.loggedIn && this.$auth.user.id === this.user.id
+    }
+  },
   methods: {
     async askDelete () {
-      if (confirm('Are you sure?')) {
+      const message = this.isMe ? 'Are you sure you want to delete yourself?' : 'Are you sure?'
+      if (confirm(message)) {
         const res = await this.$api.delete('users/' + this.user.id)
-        this.$toasted.success('User successfully deleted')
-        this.$emit('deleted', res)
-        // todo if self delete reset auth token and redirect to /login
+        if (this.isMe) {
+          this.$auth.reset() // clear token and redirect to /login
+        } else {
+          this.$toasted.success('User successfully deleted')
+          this.$emit('deleted', res)
+        }
       }
     }
   }
