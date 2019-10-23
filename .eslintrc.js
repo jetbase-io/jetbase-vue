@@ -21,6 +21,8 @@ module.exports = {
       "ignoreWhenNoAttributes": true,
       "ignoreWhenEmpty": true,
       "ignores": ['pre', 'textarea', 'template', 'nuxt-link']
-    }]
+    }],
+
+    'vue/multiline-html-element-content-newline': 'off'
   }
 }
