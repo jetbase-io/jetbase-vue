@@ -4,6 +4,7 @@
       <i class="fas fa-bars" />
     </button>
     <a class="navbar-brand">
+      <!--todo change logo to jetbase-->
       <img src="/media/logo.537211e7.svg" width="89" height="25" alt="JetBase Logo" class="navbar-brand-full">
       <img src="/media/sygnet.c8d5c2d9.svg" width="30" height="30" alt="JetBase Logo" class="navbar-brand-minimized">
     </a>
