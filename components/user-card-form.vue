@@ -230,7 +230,7 @@ export default {
       return this.inputIdPrefix + id
     },
     generatePassword () {
-      const password = generatePassword()
+      const password = generatePassword(this.passwordMinLength)
       this.form.password = password
       this.form.password_confirmation = password
       this.showPassword = true
