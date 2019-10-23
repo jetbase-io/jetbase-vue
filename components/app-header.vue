@@ -3,11 +3,10 @@
     <button type="button" class="d-lg-none navbar-toggler" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
-    <a class="navbar-brand">
-      <!--todo change logo to jetbase-->
-      <img src="/media/logo.537211e7.svg" width="89" height="25" alt="JetBase Logo" class="navbar-brand-full">
-      <img src="/media/sygnet.c8d5c2d9.svg" width="30" height="30" alt="JetBase Logo" class="navbar-brand-minimized">
-    </a>
+    <nuxt-link class="navbar-brand" to="/">
+      <img src="/media/logo.svg" width="100" height="30" alt="JetBase Logo" class="navbar-brand-full">
+      <!--<img src="/media/sygnet.c8d5c2d9.svg" width="30" height="30" alt="JetBase Logo" class="navbar-brand-minimized">-->
+    </nuxt-link>
     <button type="button" class="d-md-down-none navbar-toggler" @click="$emit('toggleSidebar')">
       <i class="fas fa-bars" />
     </button>
@@ -79,6 +78,8 @@ export default {
   background-color: #fff;
   border-bottom: 1px solid #c8ced3;
   flex: 0 0 55px;
+  padding-top: 0;
+  padding-bottom: 0;
   .dropdown-menu {
     position: absolute;
     top: 0;
@@ -87,8 +88,24 @@ export default {
     transform: translate3d(0, 37px, 0);
     left: auto;
   }
+  .navbar-brand {
+    height: 55px;
+    margin-left: -15px;
+    width: 155px;
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .navbar-toggler {
     outline: 0;
+    width: 45px;
+    border-radius: 0;
+    height: 55px;
+    color: #73818f;
+    &:hover {
+      color: #2f353a;
+    }
   }
 }
 
