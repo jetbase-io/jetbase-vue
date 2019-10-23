@@ -1,7 +1,7 @@
-#language: node_js
+language: node_js
 
-#node_js:
-#  - 'LTS'
+node_js:
+  - '12.13.0'
 
 cache:
   directories:
@@ -9,18 +9,20 @@ cache:
 
 before_install:
   # install nodejs and npm manually
-  - curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
-  - sudo bash nodesource_setup.sh
-  - sudo apt install -y nodejs
-  - source ~/.bashrc
+#  - curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
+#  - sudo bash nodesource_setup.sh
+#  - sudo apt install -y nodejs
+#  - source ~/.bashrc
   - node --version
   - npm --version
-  # copy .env file
-  - cp .env.sample .env
-  - cat .env
 
 install:
   - npm install
+
+before_script:
+  # copy .env file
+  - cp .env.sample .env
+  - cat .env
 
 script:
   - npm run test
