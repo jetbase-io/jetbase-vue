@@ -155,6 +155,7 @@ html:not([dir="rtl"]) .sidebar-show .sidebar {
     z-index: 1019;
     width: 200px;
     height: calc(100vh - 55px);
+    top: 55px;
   }
 }
 
